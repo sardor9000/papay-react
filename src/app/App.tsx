@@ -1,13 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import '../css/App.css';
+import { Box, Button, Container, Stack, Typography } from '@mui/material';
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <Container maxWidth="sm">
+      <Stack flexDirection={"column"}>
+        <Box sx={{ my: 4 }}>
+          <Typography variant='h4' component={'h1'} gutterBottom>
+            Create React App on TypeScript With REDUX
+          </Typography>
+        </Box>
+        <Button variant="contained">Contained</Button>
+      </Stack>
+    </Container>
   );
 }
 
 export default App;
+  
