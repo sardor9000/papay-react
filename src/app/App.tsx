@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Container, Stack, Typography } from '@mui/material';
 import '../css/App.css';
+import '../css/navbar.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { RestaurantPage } from './screens/MemberPage';
 import { ComminityPage } from './screens/CommunityPage';
@@ -9,12 +10,26 @@ import { MemberPage } from './screens/RestaurantPage';
 import { HelpPage } from './screens/HelpPage';
 import { LoginPage } from './screens/LoginPage';
 import { HomePage } from './screens/HomePage';
+import { NavbarHome } from './components/header';
+import { NavbarRestaurant } from './components/header/restaurant';
+import { NavbarOthers } from './components/header/others';
 
-function Dishes() {  
+function App() {  
+  const [path, setPath] = useState()
+  const main_path = window.location.pathname;
+
     return (
-        <Router>
-            <div>
-                <nav>
+      <Router>
+        
+        {main_path == '/' ? (
+          <NavbarHome setPath={setPath} />
+        ) : main_path.includes("/restaurant") ? (
+            <NavbarRestaurant  setPath={setPath} />
+        ) : (
+              <NavbarOthers  setPath={setPath} />
+        )}
+           
+                {/* <nav>
                     <ul>
                         <li>
                             <Link to="/restaurant">RestaurantPage</Link>
@@ -38,7 +53,7 @@ function Dishes() {
                             <Link to="/">HomePage</Link>
                         </li>
                     </ul>
-                </nav>
+                </nav> */}
 
                 <Switch>
                     <Route path="/restaurant">
@@ -63,12 +78,12 @@ function Dishes() {
                         <HomePage/>
                     </Route>
                 </Switch>
-            </div>
+           
      </Router>
     )
 }
   
-export default Dishes;
+export default App;
 
 function Home() {
     return <h2>Home</h2>
