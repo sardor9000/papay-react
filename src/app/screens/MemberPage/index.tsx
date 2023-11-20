@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container } from "@mui/material";
 
-export function RestaurantPage() {
+export function MemberPage() {
     return (
-        <Container>RestaurantPage</Container>
+        <Container>MemberPage</Container>
     );
 };
