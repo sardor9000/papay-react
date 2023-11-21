@@ -482,7 +482,7 @@
     width: 216px;
     height: 200px;
     transform: matrix(-1, 0, 0, 1, 0, 0);
-    background: url("/public/home/papays\ 1.png");
+    background: url("/public/home/papays 1.png");
     background-size: cover;
 }
 
@@ -490,8 +490,6 @@
     margin-right: -40px;
     width: 216px;
     height: 200px;
-    transform: matrix(-1, 0, 0, 1, 0, 0);
-    background: url("/public/home/papays\ 1.png");
-    background-size: cover;
-
+    transform: matrix(+1, 0, 0, 1, 0, 0);
+    background: url("/public/home/papays 1.png");
 }

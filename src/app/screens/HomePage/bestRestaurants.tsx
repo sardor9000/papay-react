@@ -36,7 +36,7 @@ export function BestRestaurants() {
                                             right: "rem",
                                             bottom: 0,
                                             transform: "translateY(50%)",
-                                            color: "rgba(0,0,0,.4)"
+                                            color: "rgba(0, 0 , 0,.4)"
                                         }}
                                     >
                                         <Favorite
