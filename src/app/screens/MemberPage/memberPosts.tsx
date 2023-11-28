@@ -14,7 +14,7 @@ export function MemberPosts(props: any) {
           <Stack className="all_article_box" sx={{ cursor: "pointer" }}>
             <Box
               className={"all_article_img"}
-              sx={{ backgroundImage: `url('/icons/default_img.svg')` }}
+            //   sx={{ backgroundImage: `url('/icons/default_img.svg')` }}
             ></Box>
             <Box className={"all_article_container"}>
               <Box alignItems={"center"} display={"flex"}>
