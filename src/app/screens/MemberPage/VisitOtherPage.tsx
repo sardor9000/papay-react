@@ -11,6 +11,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { MemberFollowers } from "./memberFollowers";
 import { MemberFollowing } from "./ memberFollowing";
+import TViewer from "../../components/tuiEditor/TViewer";
 
 export function VisitOtherPage() {
   /**INITIALIZATION */
@@ -26,7 +27,7 @@ export function VisitOtherPage() {
       <Container maxWidth="lg" sx={{ mt: "50px", mb: "50px" }}>
         <Stack className={"my_page_frame"}>
           <TabContext value={value}>
-            <Stack className={"my_page_left"}>
+          <Stack className={"my_page_left"}>
               <Box display={"flex"} flexDirection={"column"}>
                 <TabPanel value="1">
                   <Box className={"menu_name"}>Maqolalar</Box>
@@ -61,7 +62,7 @@ export function VisitOtherPage() {
                 <TabPanel value="2">
                   <Box className={"menu_name"}>Followers</Box>
                   <Box className={"menu_content"}>
-                    <MemberFollowers />
+                    <MemberFollowers actions_enabled={false} />
                     <Stack
                       sx={{ my: "40px" }}
                       direction="row"
@@ -97,11 +98,36 @@ export function VisitOtherPage() {
                       alignItems={"center"}
                       justifyContent="center"
                     >
-                        <TabPanel value={"4"}>
-                           <Box className={"menu_name"}>Tanlangan Maqola</Box>
-                            <Box className={"write_content"}></Box>
-                        </TabPanel>
-                        
+                      <Box className={"bottom_box"}>
+                        <Pagination
+                          count={5}
+                          page={1}
+                          renderItem={(item) => (
+                            <PaginationItem
+                              components={{
+                                previous: ArrowBackIcon,
+                                next: ArrowForwardIcon,
+                              }}
+                              {...item}
+                              color={"secondary"}
+                            />
+                          )}
+                        />
+                      </Box>
+                    </Stack>
+                  </Box>
+                </TabPanel>
+                <TabPanel value="4">
+                  <Box className={"menu_name"}>Tanlangan Maqola</Box>
+                  <Box className={"menu_content"}>
+                    <TViewer text={`<h3>Hello</h3>`}/>
+                    {/* <MemberFollowers actions_enabled={false} /> */}
+                    <Stack
+                      sx={{ my: "40px" }}
+                      direction="row"
+                      alignItems={"center"}
+                      justifyContent="center"
+                    >
                       <Box className={"bottom_box"}>
                         <Pagination
                           count={5}

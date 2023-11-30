@@ -29,9 +29,10 @@ export function MemberFollowing(props: any) {
               <span className="username_text">USER</span>
               <span className="name_text">{follower.mb_nick}</span>
             </div>
-            {props.actions_enabled &&(
-              
-              
+
+
+            {props.actions_enabled && (
+
                 <Button
                   variant="contained"
                   startIcon={

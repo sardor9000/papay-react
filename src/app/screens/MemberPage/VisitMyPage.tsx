@@ -19,6 +19,10 @@ import { MemberPosts } from "./memberPosts";
 import { MemberFollowers } from "./memberFollowers";
 import { MemberFollowing } from "./ memberFollowing";
 import { MySettings } from "./ mySettings";
+import TViewer  from '../../components/tuiEditor/TViewer'; 
+import { TuiEditor } from "../../components/tuiEditor/TuiEditor";
+
+
 
 
 export function VisitMyPage(props: any) {
@@ -83,11 +87,13 @@ export function VisitMyPage(props: any) {
                 <TabPanel value={"4"}>
                   <Box className={"menu_name"}>Maqola Yozish</Box>
                   <Box className={"write_content"}></Box>
+                  <TuiEditor/>
                 </TabPanel>
 
                 <TabPanel value={"5"}>
                   <Box className={"menu_name"}>Tanlangan Maqola</Box>
                   <Box className={"menu_content"}></Box>
+                  <TViewer text={`<h3>Hello</h3>`}/>
                 </TabPanel>
 
                 <TabPanel value={"6"}>
