@@ -1,0 +1,156 @@
+.help_page{
+    width: 100%;
+    height: auto;
+    display: flex;
+    background: #0b0e11;
+}
+
+.help_page .help_menu {
+    border-bottom: 1px solid #fff;
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    justify-content: center;
+    width:100%
+}
+
+.help_page .css-1gsv261 {
+    width:75%
+}
+
+.help_page .css-heg063-MuiTabs-flexContainer {
+    justify-content:space-between
+}
+
+.help_page .css-19kzrtu {
+    padding-top:24px
+}
+
+.help_page .help_main_content {
+    height: 1000px;
+    width:100%
+}
+
+.help_page .theRules_box {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #ededed;
+    border-radius: 8px;
+    box-shadow: 0 20px 30px rgb(25 25 46/4%);
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: center;
+    padding: 24px;
+    width:100%
+}
+
+.theRules_box .theRulesFrame {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width:100%
+}
+
+.theRules_box .theRulesFrame p {
+    border-bottom: 1px solid #ddd;
+    color: #000;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: .00938em;
+    line-height:2.5
+}
+
+.help_page .accordian_menu, .help_page .admin_letter_box {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width:100%
+}
+
+.help_page .admin_letter_box {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #ededed;
+    border-radius: 8px;
+    box-shadow: 0 20px 30px rgba(25, 25, 46, .04);
+    justify-content: center;
+    padding:60px
+}
+
+.help_page .admin_letter_box .admin_letter_container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width:100%
+}
+
+.help_page .admin_letter_container .admin_letter_frame {
+    margin-top:30px
+}
+
+.help_page .admin_letter_frame span {
+    color: #140342;
+    font-family: ABeeZee;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height:28px
+}
+
+.help_page .admin_letter_frame p {
+    color: #4f547b;
+    font-family: Sedan;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    margin-top:20px
+}
+
+.help_page .admin_letter_container .admin_letter_frame {
+    display: flex;
+    flex-direction:column
+}
+
+.help_page .admin_letter_frame .admin_input_box {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-top: 30px;
+    width:100%
+}
+
+.help_page .admin_letter_frame .admin_input_box label {
+    color: #140342;
+    font-family: Verdana;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height:19px
+}
+
+.help_page .admin_letter_frame .admin_input_box input {
+    height:60px
+}
+
+.help_page .admin_letter_frame .admin_input_box input, .help_page .admin_letter_frame .admin_input_box textarea {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: #4f547b;
+    display: flex;
+    font-family: Verdana;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    margin-top: 10px;
+    padding: 20px;
+    width:100%
+}
+
+.help_page .admin_letter_frame .admin_input_box textarea {
+    height:150px
+}
