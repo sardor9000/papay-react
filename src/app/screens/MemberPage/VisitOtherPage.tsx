@@ -15,7 +15,7 @@ import TViewer from "../../components/tuiEditor/TViewer";
 
 export function VisitOtherPage() {
   /**INITIALIZATION */
-  const [value, setValue] = useState("1");
+  const [value, setValue] = useState("3");
 
   /**HANDLERS */
   const handleChange = (event: any, newValue: string) => {
