@@ -15,6 +15,23 @@ class Car extends Component {
     changeColor = () => {
       this.setState({color: "blue", model: "tesla"});
     }
+
+
+    componentDidMount() {
+        console.log("run componentDidmount");
+        // runs after first render = RETRIEVE data from backend server
+    }
+
+    componentWillUnmount() {
+        console.log("run componentDidmount");
+        // runs after component unmount 
+    }
+
+    componentDidUpdate() {
+        
+    }
+
+
     render() {
       return (
         <div>
