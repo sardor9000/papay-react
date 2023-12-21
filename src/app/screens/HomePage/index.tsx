@@ -10,8 +10,11 @@ import { Recommendations } from './recommendation';
 import '../../../css/home.css'
 
 export function HomePage() {
+    
+    // selector: store => data 
 
     useEffect(() => {
+        // backendan datani request => data
         console.log("componentDidMount => Data fetch")
 
         return () => {
