@@ -9,7 +9,7 @@ export interface Restaurant {
     mb_type: string,
     mb_status: string,
     mb_address: string,
-    mb_description: string,
+    mb_description?: string,
     mb_image: string,
     mb_point: number,
     mb_top: string,
@@ -17,8 +17,8 @@ export interface Restaurant {
     mb_likes: number,
     mb_follow_cnt: number,
     mb_subscriber: number,
-    createdAt: Date,
-    mb_liked: MeLiked[]    // Me liked
+    createdAt: string,
+    me_liked: MeLiked[]    // Me liked
 }
 
 export interface Member {
@@ -38,7 +38,7 @@ export interface Member {
     mb_follow_cnt: number,
     mb_subscriber: number,
     createdAt: Date,
-    mb_liked: MeLiked[];
+    me_liked: MeLiked[];
     me_followed: MeFollowed[]; 
 }
 
