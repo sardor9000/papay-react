@@ -27,8 +27,8 @@ const topRestaurantRetriever = createSelector(
 );
 
 export function TopRestaurants() {
+    // INITIALIZATION
     const { topRestaurants } = useSelector(topRestaurantRetriever);
-
     return (
         <div className='top_restaurant_frame'>
             <Container>
