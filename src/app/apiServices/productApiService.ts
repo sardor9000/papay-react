@@ -12,7 +12,7 @@ class ProductApiService {
         
     }
 
-    async getTrendProducts(data: ProductSearchObj) {
+    async getTargetdProducts(data: ProductSearchObj) {
         try {
             const url = '/products',
                 result = await axios.post(this.path + url, data, {

@@ -32,7 +32,7 @@ export function BestDishes() {
     const { trendProducts } = useSelector(trendProductRetriever);
     useEffect(() => {
         const productService = new ProductApiService();
-        productService.getTrendProducts({ order: "product_likes", page: 1, limit: 4, })
+        productService.getTargetdProducts({ order: "product_likes", page: 1, limit: 4, })
             .then((data) => setTrendProducts(data))
             .catch(err => console.log(err))
     }, [])
