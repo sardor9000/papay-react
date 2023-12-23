@@ -44,7 +44,7 @@ export function BestDishes() {
                 <Box className="category_title">Trendagi Ovqatlar</Box>
                     <Stack sx={{ mt: "43px" }} flexDirection={'row'}>
                         {trendProducts.map((product: Product) => {
-                            const image_parth = `${serverApi}/${product.product_images[0]}`;
+                            const image_path = `${serverApi}/${product.product_images[0]}`;
                             const size_volume =
                                 product.product_collection === "drink"
                                     ? product.product_volume + "l"
@@ -54,8 +54,7 @@ export function BestDishes() {
                             <Stack
                                 className="dish_img"
                                 sx={{
-                                    backgroundImage: `url(
-                                        'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D')`
+                                    backgroundImage: `url(${image_path})`
                                 }}
                             >
                                         <div className={"dish_sale"}>{ size_volume}</div>

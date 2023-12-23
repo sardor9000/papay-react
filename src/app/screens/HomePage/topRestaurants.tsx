@@ -102,7 +102,7 @@ export function TopRestaurants() {
                                         }}
                                     >
                                                     <Favorite
-                                                        // style={{ fill: ele?.me_liked && ele?.me_liked[0].my_favorite ? "red" : "white" }}
+                                                        style={{ fill: ele?.me_liked && ele?.me_liked[0]?.my_favorite ? "red" : "white" }}
                                                     />
                                     </IconButton> 
 
