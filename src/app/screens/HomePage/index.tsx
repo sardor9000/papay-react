@@ -49,7 +49,7 @@ export function HomePage() {
             page: 1, limit: 4, order: "mb_point",
         }).then((data) => {
             setBestRestaurants(data)
-        })
+        }).catch(err => console.log(err))
 
     },
 []);

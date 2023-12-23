@@ -10,6 +10,7 @@ import ProductApiService from '../../apiServices/productApiService';
 import { createSelector } from 'reselect';
 import { retrieveTrendProducts } from "./selector";
 import { serverApi } from '../../../lib/config';
+import { useHistory } from 'react-router-dom';
 
 // REDUX SLICE
 const actionDispatch = (dispach: Dispatch) => ({
@@ -26,7 +27,8 @@ const trendProductRetriever = createSelector(
 
 export function BestDishes() {
     // INITIALIZATION
-    const { } = actionDispatch(useDispatch());
+    const history = useHistory();
+    const {setTrendProducts } = actionDispatch(useDispatch());
     const { trendProducts } = useSelector(trendProductRetriever);
     useEffect(() => {
         const productService = new ProductApiService();
