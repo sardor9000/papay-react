@@ -15,7 +15,7 @@ import { ArrowForward } from '@mui/icons-material';
 
 const targetAticles = [1, 2, 3, 4, 5]
 
-export function ComminityPage(props: any) {
+export function CommunityPage(props: any) {
     // INITIALIZATION
     const [Value, setValue] = React.useState("1")
 

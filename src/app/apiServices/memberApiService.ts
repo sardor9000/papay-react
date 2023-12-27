@@ -18,7 +18,7 @@ class MemberApiService {
                     withCredentials: true
                 });
             console.log("state:", result.data.sate);
-            assert.ok(result.data, Definer.general_err2);
+            assert.ok(result.data, Definer.general_err1);
             assert.ok(result?.data.state != "fail", result?.data.message);
 
             const member: Member = result.data.data;
@@ -37,7 +37,7 @@ class MemberApiService {
                     withCredentials: true
                 });
             console.log("state:", result.data.sate);
-            assert.ok(result.data, Definer.general_err2);
+            assert.ok(result.data, Definer.general_err1);
             assert.ok(result?.data.state != "fail", result?.data.message);
 
             const member: Member = result.data.data;
@@ -48,6 +48,22 @@ class MemberApiService {
             throw err;
         }
     }
+
+    public async logOutRequest() {
+        try {
+          const result = await axios.get(this.path + "/logout", {
+            withCredentials: true,
+          });
+          assert.ok(result?.data, Definer.general_err1)
+          assert.ok(result?.data?.state != "fail", result?.data?.message)
+          localStorage.removeItem("member_data")
+          const logout_result = result.data.state
+          return logout_result == "success"
+        } catch (err: any) {
+          console.log(`ERROR ::: LogOutRequest ${err.message}`);
+          throw err;
+        }
+      }
 }
 
 export default MemberApiService;
