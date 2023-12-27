@@ -50,6 +50,9 @@ export default function AuthenticationModal(props: any) {
     const handlePassword = (e: any) => { 
         mb_password = e.target.value;
     };
+
+  
+  
   const handleSignupRequest = async () => {
     try {
       const is_fulfilled = mb_nick != "" && mb_password != "" && mb_phone;
@@ -73,6 +76,8 @@ export default function AuthenticationModal(props: any) {
       sweetErrorHandling(err).then();
     }
   }
+
+  
 
     const handleLoginRequest = async () => {
         try {
