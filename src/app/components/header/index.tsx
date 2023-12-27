@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Badge, Box, Button, Container, IconButton, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import { sweetTopSuccessAlert } from "../../../lib/sweetAlert";
 
 
 export function NavbarHome(props: any) {
@@ -65,7 +66,15 @@ export function NavbarHome(props: any) {
                        </IconButton>
                     </Box>
                     <Box>
-                        <Button variant="contained" style={{color: "#fffff", background: "#1976d2"}}>KIRISH</Button>
+                        <Button
+                            variant="contained"
+                            style={{
+                                color: "#fffff",
+                                background: "#1976d2"
+                            }}
+                            onClick={props.handleLoginOpen}
+                        >
+                            KIRISH</Button>
                     </Box>
 
                 </Stack>
@@ -80,7 +89,7 @@ export function NavbarHome(props: any) {
                     The Authentic  Restaurant & Cafe
                     </Box>
                     <Box className="timeline_service">
-                        {count} soat xizmatingizdamiz.
+                        24 soat xizmatingizdamiz.
                     </Box>
                     <Box sx={{mt: '90px'}}>
                         <Button variant="contained"
@@ -89,7 +98,7 @@ export function NavbarHome(props: any) {
                                 height: '60px',
                                 background: '#1976d2'
                             }}
-                            onClick={() => setValue(!value)}
+                            onClick={props.handleSignUpOpen}
                         >
                             RO'YHATDAN O'TISH</Button>
                     </Box>

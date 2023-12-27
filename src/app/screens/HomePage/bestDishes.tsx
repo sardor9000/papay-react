@@ -53,7 +53,7 @@ export function BestDishes() {
                                 <Box className="dish_box">
                             <Stack
                                 className="dish_img"
-                                sx={{
+                                        sx={{
                                     backgroundImage: `url(${image_path})`
                                 }}
                             >
