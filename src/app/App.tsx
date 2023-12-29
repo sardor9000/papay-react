@@ -15,25 +15,25 @@ import { NavbarHome } from './components/header';
 import { NavbarRestaurant } from './components/header/restaurant';
 import { NavbarOthers } from './components/header/others';
 import { Footer } from './components/footer';
-import Car from './screens/testCar';
 import AuthenticationModal from './components/auth';
 import { Member } from '../types/user';
 import { serverApi } from '../lib/config';
 import MemberApiService from './apiServices/memberApiService';
 import { sweetFailureProvider, sweetTopSmallSuccessAlert } from '../lib/sweetAlert';
 import { Definer } from '../lib/Definer';
+import assert from "assert"
 
 function App() {  
   // INITIALIZATION
-  const [verifiedMemberData, setVerifiedMemberData] = useState<Member | null>(null
-
-  )
+  const [verifiedMemberData, setVerifiedMemberData] = useState<Member | null>(null)
   const [path, setPath] = useState()
   const main_path = window.location.pathname;
   const [signUpOpen, setSignUpOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  
   
   useEffect(() => {
     console.log("====useEffect====: App:");

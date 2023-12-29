@@ -7,14 +7,9 @@ import { Logout } from "@mui/icons-material";
 
 export function NavbarHome(props: any) {
     // INITIALIZATION
-    const [count, setCount] = useState(0)
-    const [value, setValue] = useState(true)
+   
 
-    useEffect(() => {
-        setCount(count + 1)
-    }, [value])
-
-    return <div className="format home_navbar">
+    return( <div className="format home_navbar">
         <Container>
             <Stack flexDirection={'row'}
                 className="navbar_config"
@@ -89,7 +84,8 @@ export function NavbarHome(props: any) {
                     ) :
                         <img
                             style={{ width: '48px', height: "48px", borderRadius: '24px' }}
-                            src={props.verifiedMemberData.mb_image} />
+                            src={props.verifiedMemberData.mb_image}
+                        onClick={props.handleLogOutClick}/>
                     };
 
             <Menu
@@ -152,7 +148,8 @@ export function NavbarHome(props: any) {
                         24 soat xizmatingizdamiz.
                     </Box>
                     <Box sx={{mt: '90px'}}>
-                        <Button variant="contained"
+                        {!props.verifiedMemberData ? (
+                            <Button variant="contained"
                             style={{
                                 width: '210px',
                                 height: '60px',
@@ -160,7 +157,9 @@ export function NavbarHome(props: any) {
                             }}
                             onClick={props.handleSignUpOpen}
                         >
-                            RO'YHATDAN O'TISH</Button>
+                            RO'YHATDAN O'TISH
+                        </Button>
+                        ) : null }
                     </Box>
                 </Stack>
                 <Stack
@@ -170,4 +169,4 @@ export function NavbarHome(props: any) {
             </Stack>
         </Container> 
     </div>
-}
+)}

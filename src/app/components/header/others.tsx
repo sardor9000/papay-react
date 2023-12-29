@@ -48,7 +48,16 @@ export function NavbarOthers(props: any) {
                         <NavLink to='/community' activeClassName="underline">
                             Community
                         </NavLink>
-                    </Box>
+            </Box>
+            
+            {props.verifiedMemberData ? (
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/member-page" activeClassName="underline">
+                  Sahifam
+                </NavLink>
+              </Box>
+            ) : null}
+            
                     <Box className='hover-line' onClick={props.setPath}>
                         <NavLink to='/help' activeClassName="underline">
                             Help

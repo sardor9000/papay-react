@@ -17,13 +17,13 @@ class MemberApiService {
                 {
                     withCredentials: true
                 });
-            console.log("state:", result.data.sate);
-            assert.ok(result.data, Definer.general_err1);
-            assert.ok(result?.data.state != "fail", result?.data?.message);
+            console.log("state:", result.data.state);
+            assert.ok(result?.data, Definer.general_err1);
+            assert.ok(result?.data?.state != "fail", result?.data?.message);
 
             const member: Member = result.data.data;
             localStorage.setItem("member_data", JSON.stringify(member));
-            return member
+            return member;
         } catch (err: any) {
             console.log(`ERROR:: loginRequest ${err.message}`);
             throw err;
@@ -36,9 +36,9 @@ class MemberApiService {
                 {
                     withCredentials: true
                 });
-            console.log("state:", result.data.sate);
-            assert.ok(result.data, Definer.general_err1);
-            assert.ok(result?.data.state != "fail", result?.data?.message);
+            console.log("state:", result.data.state);
+            assert.ok(result?.data, Definer.general_err1);
+            assert.ok(result?.data?.state != "fail", result?.data?.message);
 
             const member: Member = result.data.data;
             localStorage.setItem("member_data", JSON.stringify(member));
@@ -57,7 +57,7 @@ class MemberApiService {
           assert.ok(result?.data, Definer.general_err1)
           assert.ok(result?.data?.state != "fail", result?.data?.message)
           localStorage.removeItem("member_data")
-          const logout_result = result.data.state
+            const logout_result = result.data.state;
           return logout_result == "success"
         } catch (err: any) {
           console.log(`ERROR ::: LogOutRequest ${err.message}`);

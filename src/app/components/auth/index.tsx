@@ -55,7 +55,7 @@ export default function AuthenticationModal(props: any) {
   
   const handleSignupRequest = async () => {
     try {
-      const is_fulfilled = mb_nick != "" && mb_password != "" && mb_phone;
+      const is_fulfilled = mb_nick != "" && mb_password != "" && mb_phone != 0;
       assert.ok(is_fulfilled, Definer.input_err1);
 
       const signup_data = {
@@ -77,7 +77,7 @@ export default function AuthenticationModal(props: any) {
     }
   }
 
-  
+
 
     const handleLoginRequest = async () => {
         try {
