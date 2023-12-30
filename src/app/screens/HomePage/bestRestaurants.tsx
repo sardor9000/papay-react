@@ -82,7 +82,7 @@ export function BestRestaurants() {
         style={{
           position: "absolute",
           left: "6%",
-          transform: "rotate(90deg)",
+          transform: "rotate(0deg)",
         }}
       />
       <Container sx={{ paddingTop: "153px" }}>

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Definer } from "../../lib/Definer";
 import { serverApi } from "../../lib/config";
 import { Restaurant } from "../../types/user";
-import { searchObj } from "../../types/others";
+import { SearchObj } from "../../types/others";
 
 
 class RestaurantApiService{
@@ -28,7 +28,7 @@ class RestaurantApiService{
     }
 
 
-    async  getRestaurants(data: searchObj) {
+    async  getRestaurants(data: SearchObj) {
         try {
             const url = `/restaurants?order=${data.order}&page=${data.page}&limit=${data.limit}`,
                 result = await axios.get(this.path + url, { withCredentials: true });
