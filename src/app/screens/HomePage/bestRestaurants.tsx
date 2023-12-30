@@ -60,10 +60,17 @@ export function BestRestaurants() {
                                             transform: "translateY(50%)",
                                             color: "rgba(0, 0 , 0,.4)"
                                         }}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                          }}
                                     >
-                                        <Favorite
+                                          <Favorite
                                             style={{
-                                            color: "white",
+                                                            fill:
+                                                    ele?.me_liked && ele?.me_liked[0]?.my_favorite
+                                                        ? "red"
+                                                        : "white"
+                                        
                                         }}/>
 
                                     </IconButton>
