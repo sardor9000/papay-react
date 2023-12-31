@@ -5,11 +5,11 @@ export interface SearchObj {
 }
 
 export interface ProductSearchObj {
-    page: number,
-    limit: number,
-    order: string,
-    restaurant_mb_id?: string,
-    product_collection?: string
+    page: number;
+    limit: number;
+    order: string;
+    restaurant_mb_id?: string;
+    product_collection?: string;
 }
 
 export interface MemberLiken {

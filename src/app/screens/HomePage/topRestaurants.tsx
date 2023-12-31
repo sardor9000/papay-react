@@ -190,14 +190,14 @@ export function TopRestaurants() {
                           display: "flex",
                         }}
                       >
-                       <div>{ele.mb_likes}</div>
                         <div
                           ref={(element) => {
                             refs.current[ele._id] = element;
                           }}
                         >
-                          {ele.mb_likes}
+                                      {ele.mb_likes}
                         </div>
+                        <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
                       </Typography>
                     </CardOverflow>
                   </Card>

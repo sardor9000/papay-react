@@ -32,12 +32,14 @@ import assert from 'assert';
 import MemberApiService from "../../apiServices/memberApiService";
 import { Definer } from '../../../lib/Definer';
 import { sweetErrorHandling, sweetTopSmallSuccessAlert } from '../../../lib/sweetAlert';
+import { useHistory } from 'react-router-dom';
 
 
 
 // REDUX SLICE
 const actionDispatch = (dispach: Dispatch) => ({
-  setTargetRestaurants: (data: Restaurant[]) => dispach(setTargetRestaurants(data)),
+  setTargetRestaurants: (data: Restaurant[]) =>
+  dispach(setTargetRestaurants(data)),
 });
 
 //** Redux Selector */
@@ -49,7 +51,8 @@ const targetRestaurantsRetriever = createSelector(
 );
 
 export function AllRestaurants() {
-    // INITIALIZATION
+  // INITIALIZATION
+  const history = useHistory();
   const { setTargetRestaurants } = actionDispatch(useDispatch());
   const { targetRestaurants } = useSelector(targetRestaurantsRetriever);
   const [targetSearchObject, setTargetSearchObject] = useState<SearchObj>({
@@ -68,6 +71,9 @@ export function AllRestaurants() {
   }, [targetSearchObject]);
 
   /** HANDLERS */
+  const chosenRestaurantHandler = (id: string) => {
+    history.push(`/restaurant/${id}`)
+  }
   const searchHandler = (category: string) => {
     targetSearchObject.page = 1;
     targetSearchObject.order = category;
@@ -141,9 +147,15 @@ export function AllRestaurants() {
               {targetRestaurants.map((ele: Restaurant) => {
                 const image_path = `${serverApi}/${ele.mb_image}`;
                 return (
-                    <Card
+                  <Card
+                    onClick={() => chosenRestaurantHandler(ele._id)}
                     variant="outlined"
-                    sx={{ minHeight: 410, minWidth: 290, mx: "17px", my: "20px" }}
+                    sx={{
+                      minHeight: 410,
+                      minWidth: 290, mx: "17px",
+                      my: "20px",
+                      cursor: "pointer"
+                    }}
                   >
                     <CardOverflow>
                       <AspectRatio ratio={"1"}>
