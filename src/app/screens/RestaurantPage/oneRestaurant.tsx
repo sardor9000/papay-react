@@ -27,10 +27,11 @@ import {
     setRandomRestaurants
 } from "../../screens/RestaurantPage/slice";
 import { Product } from '../../../types/product';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { ProductSearchObj } from '../../../types/others';
 import ProductApiService from '../../apiServices/productApiService';
 import { serverApi } from '../../../lib/config';
+import RestaurantApiService from '../../apiServices/restaurantApiService';
 
 
 
@@ -65,6 +66,7 @@ const targetProductsRetriever = createSelector(
 export function OneRestaurant() {
 
     // Initializations
+    const history = useHistory();
     let { restaurant_id } = useParams<{ restaurant_id: string }>();
     const { setRandomRestaurants, setChosenRestaurants, setTargetProducts } = actionDispatch(useDispatch());
     const { randomRestaurants } = useSelector(randomRestaurantsRetriever);
@@ -82,6 +84,13 @@ export function OneRestaurant() {
         });
     
     useEffect(() => {
+
+        const restaurantService = new RestaurantApiService();
+        restaurantService
+            .getRestaurants({ page: 1, limit: 10, order: "random" })
+            .then((data) => setRandomRestaurants(data))
+            .catch((err) => console.log(err));
+
         const productService = new ProductApiService();
         productService
             .getTargetdProducts(targetProductSearchObj)
@@ -90,7 +99,12 @@ export function OneRestaurant() {
     },      [targetProductSearchObj])
 
   /** Handlers */
-    
+    const chosenRestaurantHandler = (id: string) => {
+        setChosenRestaurantsId(id);
+        targetProductSearchObj.restaurant_mb_id = id;
+        setTargetProductSearchObj({ ...targetProductSearchObj });
+        history.push(`/restaurant/${id}`);
+    }
     
     
     return <div className="single_restaurant">
@@ -140,18 +154,20 @@ export function OneRestaurant() {
                             prevEl: ".restaurant-prev",
                         }}
                     >
-                        {/* {restaurant_id.map((ele, index) => {
-                            return (
-                                <SwiperSlide
-                                    style={{ cursor: "pointer" }}
-                                    key={index}
-                                    className={"restaurant_avatars"}
-                                >
-                                    <img src="/restaurant/burak.jpg" />
-                                    <span>Burak</span>
-                                </SwiperSlide>
-                            )
-                        })} */}
+                      {randomRestaurants.map((ele: Restaurant) => {
+                const image_path = `${serverApi}/${ele.mb_image}`;
+                return (
+                  <SwiperSlide
+                    onClick={() => chosenRestaurantHandler(ele._id)}
+                    style={{ cursor: "pointer" }}
+                    key={ele._id}
+                    className="restaurant_avatars"
+                  >
+                    <img src={image_path} />
+                    <span>{ele.mb_nick}</span>
+                  </SwiperSlide>
+                );
+              })}
                     </Swiper>
                     <Box
                         className={"next_btn restaurant-next"}
