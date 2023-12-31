@@ -32,6 +32,11 @@ import { ProductSearchObj } from '../../../types/others';
 import ProductApiService from '../../apiServices/productApiService';
 import { serverApi } from '../../../lib/config';
 import RestaurantApiService from '../../apiServices/restaurantApiService';
+import MemberApiService from '../../apiServices/memberApiService';
+import assert from 'assert';
+import { Definer } from '../../../lib/Definer';
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from '../../../lib/sweetAlert';
+
 
 
 
@@ -82,6 +87,8 @@ export function OneRestaurant() {
             restaurant_mb_id: restaurant_id,
             product_collection: 'dish', 
         });
+
+    const [productRebuild, setProductRebuild] = useState<Date>(new Date())
     
     useEffect(() => {
 
@@ -96,7 +103,7 @@ export function OneRestaurant() {
             .getTargetdProducts(targetProductSearchObj)
             .then(data => setTargetProducts(data))
             .catch(err => console.log(err));
-    },      [targetProductSearchObj])
+    },      [targetProductSearchObj, productRebuild])
 
   /** Handlers */
     const chosenRestaurantHandler = (id: string) => {
@@ -104,7 +111,38 @@ export function OneRestaurant() {
         targetProductSearchObj.restaurant_mb_id = id;
         setTargetProductSearchObj({ ...targetProductSearchObj });
         history.push(`/restaurant/${id}`);
+    };
+
+    const searchCollectionHandler = (collection: string) => {
+        targetProductSearchObj.page = 1;
+        targetProductSearchObj.product_collection = collection;
+        setTargetProductSearchObj({ ...targetProductSearchObj });
+    };
+    const searchOrderHandler = (order: string) => {
+        targetProductSearchObj.page = 1;
+        targetProductSearchObj.order = order;
+        setTargetProductSearchObj({ ...targetProductSearchObj });
+    };
+
+  const targetLikeProduct = async (e: any) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+
+      const memberService = new MemberApiService(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: e.target.id,
+          group_type: "product",
+        });
+        assert.ok(like_result, Definer.general_err1);
+        
+        await sweetTopSmallSuccessAlert("success", 700, false);
+        setProductRebuild(new Date());
+    } catch (err: any) {
+      console.log("targetLikeProduct, ERROR:", err);
+      sweetErrorHandling(err).then();
     }
+  };
+    
     
     
     return <div className="single_restaurant">
@@ -184,16 +222,20 @@ export function OneRestaurant() {
                     sx={{ mt: "65px" }}
                 >
                     <Box className={"dishs_filter_box"}>
-                        <Button variant={"contained"} color="secondary">
+                        <Button variant={"contained"} color="secondary"
+                        onClick={() => searchOrderHandler('createdAt')}>
                             New
                         </Button>
-                        <Button variant={"contained"} color="secondary">
+                        <Button variant={"contained"} color="secondary"
+                        onClick={() => searchOrderHandler('product_price')}>
                             Price
                         </Button>
-                        <Button variant={"contained"} color="secondary">
+                        <Button variant={"contained"} color="secondary"
+                        onClick={() => searchOrderHandler('product_likes')}>
                             Likes
                         </Button>
-                        <Button variant={"contained"} color="secondary">
+                        <Button variant={"contained"} color="secondary"
+                        onClick={() => searchOrderHandler('product_views')}>
                             Views
                         </Button>
                     </Box>
@@ -207,19 +249,24 @@ export function OneRestaurant() {
 
                 <Stack className={"dish_category_box"}>
                     <div className={"dish_category_main"}>
-                        <Button variant={"contained"} color="secondary">
+                            <Button variant={"contained"} color="secondary"
+                            onClick={() => searchCollectionHandler('etc')}>
                             Boshqa
                         </Button>
-                        <Button variant={"contained"} color="secondary">
+                            <Button variant={"contained"} color="secondary"
+                             onClick={() => searchCollectionHandler('dessert')}>
                             Dessert
                         </Button>
-                        <Button variant={"contained"} color="secondary">
+                            <Button variant={"contained"} color="secondary"
+                            onClick={() => searchCollectionHandler('drink')}>
                             Ichimlik
                         </Button>
-                        <Button variant={"contained"} color="secondary">
+                            <Button variant={"contained"} color="secondary"
+                            onClick={() => searchCollectionHandler('dessert')}>
                             Salad
                         </Button>
-                        <Button variant={"contained"} color="secondary">
+                            <Button variant={"contained"} color="secondary"
+                            onClick={() => searchCollectionHandler('dish')}>
                             Ovqatlar
                         </Button>
                     </div>
@@ -250,7 +297,9 @@ export function OneRestaurant() {
                                             <Checkbox
                                                 icon={<FavoriteBorder style={{ color: "white" }} />}
                                                 id={product._id}
-                                                checkedIcon={<Favorite style={{ color: "red" }} />}
+                                                checkedIcon={<Favorite style={{ color: "red" }}
+                                                />}
+                                                onClick={targetLikeProduct}
                                                 /*@ts-ignore*/
                                                 checked={
                                                     product?.me_liked &&
@@ -397,4 +446,8 @@ export function OneRestaurant() {
             </Stack>
         </Container>
     </div>
+}
+
+function setProductRebuild(arg0: Date) {
+    throw new Error('Function not implemented.');
 }
