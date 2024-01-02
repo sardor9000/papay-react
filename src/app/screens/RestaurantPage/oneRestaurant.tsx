@@ -26,6 +26,7 @@ import {
     setTargetProducts,
     setRandomRestaurants
 } from "../../screens/RestaurantPage/slice";
+
 import { Product } from '../../../types/product';
 import { useHistory, useParams } from 'react-router-dom';
 import { ProductSearchObj } from '../../../types/others';
