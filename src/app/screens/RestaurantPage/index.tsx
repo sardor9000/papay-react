@@ -19,7 +19,7 @@ export function RestaurantPage() {
                 <OneRestaurant/>
             </Route>
             <Route path={`${restaurant.path}`} >
-                <AllRestaurants/>
+                <AllRestaurants />
             </Route>
         </Switch>
     </div>
