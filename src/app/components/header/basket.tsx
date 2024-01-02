@@ -13,8 +13,8 @@ export default function Basket(props: any) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-    const { cartItems, onAdd } = props;
-    const itemsPrice = cartItems.reduce(
+    const { cartItems, onAdd, onRemove, onDelete} = props;
+    const itemsPrice = cartItems?.reduce(
         (a: any, c: CartItem) => a + c.price * c.quantity,
         0
     );
@@ -87,14 +87,14 @@ export default function Basket(props: any) {
 
           <Box className={"orders_main_wrapper"}>
             <Box className={"orders_wrapper"}>
-              {cartItems.map((item: CartItem) => {
+              {cartItems?.map((item: CartItem) => {
                 const image_path = `${serverApi}/${item.image}`;
                 return (
                   <Box className={"basket_info_box"}>
                     <div className={"cancel_btn"}>
                       <CancelIcon
                         color={"primary"}
-                        // onClick={}
+                        onClick={() => onDelete(item)}
                       />
                     </div>
                     <img src={image_path} className={"product_img"} />
@@ -103,7 +103,7 @@ export default function Basket(props: any) {
                     <Box sx={{ minWidth: 120 }}>
                       <div className="col-2">
                         <button
-                          //   onClick={}
+                            onClick={() => onRemove(item)}
                           className="remove"
                         >
                           -
@@ -121,7 +121,7 @@ export default function Basket(props: any) {
               })}
             </Box>
           </Box>
-          {cartItems.length > 0 ? (
+          {cartItems?.length > 0 ? (
             <Box className={"to_order_box"}>
               <span className={"price_text"}>Jami: ${totalPrice} ({itemsPrice} + {shippingPrice})</span>
               <Button
