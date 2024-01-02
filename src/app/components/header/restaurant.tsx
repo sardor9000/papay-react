@@ -65,8 +65,10 @@ export function NavbarRestaurant(props: any) {
                         <NavLink to='/help' activeClassName="underline">
                             Help
                         </NavLink>
-                    </Box>
-                    <Basket />
+            </Box>
+            
+            <Basket cartItems={props.cartItems} onAdd={props.onAdd} />
+            
                     {!props.verifiedMemberData ? (
               <Box>
                 <Button

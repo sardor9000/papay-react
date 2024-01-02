@@ -22,6 +22,8 @@ import MemberApiService from './apiServices/memberApiService';
 import { sweetFailureProvider, sweetTopSmallSuccessAlert } from '../lib/sweetAlert';
 import { Definer } from '../lib/Definer';
 import assert from "assert"
+import { CartItem } from '../types/others';
+import { Product } from '../types/product';
 
 function App() {  
   // INITIALIZATION
@@ -33,6 +35,10 @@ function App() {
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
+  const cartJson: any  = localStorage.getItem("cart_data");
+  const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
+  const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
   
   
   useEffect(() => {
@@ -70,7 +76,34 @@ function App() {
       console.log(err)
       sweetFailureProvider(Definer.general_err1)
     }
+  };
+
+  const onAdd = (product: Product) => {
+    const exist: any = cartItems.find((item: CartItem) => item._id === product._id);
+    if (exist) {
+      const cart_update = cartItems.map((item: CartItem) =>
+        item._id === product._id
+          ? { ...exist, quantity: exist.quantity + 1 }
+          : item
+      );
+      setCartItems(cart_update);
+      localStorage.setItem("cart_data", JSON.stringify(cart_update))
+    } else {
+      const new_item: CartItem = {
+        _id: product._id,
+        quantity: 1,
+        name: product.product_name,
+        price: product.product_price,
+        image: product.product_images[0],
+      };
+      const cart_update = [...cartItems, { ...new_item }];
+      setCartItems(cart_update);
+      localStorage.setItem("cart_data", JSON.stringify(cart_update))
+    }
   }
+  const onRemove = () => {}
+  const onDelete = () => {}
+  const onDeleteAll = () => {}
   return (
     <Router>
       {main_path == "/" ? (
@@ -83,7 +116,7 @@ function App() {
           handleLogOutClick={handleLogOutClick}
           handleCloseLogOut={handleCloseLogOut}
           handleLogOutRequest={handleLogOutRequest}
-          verifiedMemberData = {verifiedMemberData}
+          verifiedMemberData={verifiedMemberData}
         />
       ) : main_path.includes("/restaurant") ? (
         <NavbarRestaurant
@@ -95,7 +128,10 @@ function App() {
           handleLogOutClick={handleLogOutClick}
           handleCloseLogOut={handleCloseLogOut}
           handleLogOutRequest={handleLogOutRequest}
-          verifiedMemberData = {verifiedMemberData}
+          verifiedMemberData={verifiedMemberData}
+          cartItems={cartItems}
+          onAdd={onAdd}  
+            
         />
       ) : (
         <NavbarOthers
@@ -113,7 +149,7 @@ function App() {
 
       <Switch>
         <Route path="/restaurant">
-          <RestaurantPage />
+          <RestaurantPage onAdd={onAdd} />
         </Route>
         <Route path="/community">
           <CommunityPage />
