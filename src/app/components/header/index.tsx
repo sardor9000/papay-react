@@ -61,9 +61,11 @@ export function NavbarHome(props: any) {
                     </Box>
                     <Basket
                         cartItems={props.cartItems}
-                         onAdd={props.onAdd}
-                         onRemove={props.onRemove}
-                        onDelete={props.onDelete} />
+                        onAdd={props.onAdd}
+                        onRemove={props.onRemove}
+                        onDelete={props.onDelete}
+                        onDeleteAll={props.onDeleteAll}
+                    />
                     
                     {!props.verifiedMemberData ? (
                         <Box>
