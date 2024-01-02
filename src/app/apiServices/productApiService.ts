@@ -18,7 +18,9 @@ class ProductApiService {
                 result = await axios.post(this.path + url, data, {
                     withCredentials: true,
                 });
-            assert.ok(result, Definer.general_err1)
+                assert.ok(result?.data, Definer.general_err1);
+                assert.ok(result?.data?.state != "fail", result?.data?.message);
+                console.log("state:", result.data.state);
             const products: Product[] = result.data.data;
             return products;
         } catch (err: any) {
@@ -33,11 +35,10 @@ class ProductApiService {
               result = await axios.get(this.path + url, {
                 withCredentials: true,
               });
-            assert.ok(result?.data, Definer.general_err1);
-            assert.ok(result?.data?.state != "fail", result?.data?.message);
-            console.log("state:", result.data.state);
-      
-            const product: Product = result.data.data;
+              assert.ok(result?.data, Definer.general_err1);
+              assert.ok(result?.data?.state != "fail", result?.data?.message);
+              console.log("state:", result.data.state);
+              const product: Product = result.data.data;
             return product;
         } catch (err: any) {
             console.log(`ERROR::: getChosenDish ${err.message}`);

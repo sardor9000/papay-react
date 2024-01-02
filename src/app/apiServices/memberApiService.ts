@@ -18,9 +18,9 @@ class MemberApiService {
                 {
                     withCredentials: true
                 });
-            console.log("state:", result.data.state);
-            assert.ok(result?.data, Definer.general_err1);
-            assert.ok(result?.data?.state != "fail", result?.data?.message);
+                assert.ok(result?.data, Definer.general_err1);
+                assert.ok(result?.data?.state != "fail", result?.data?.message)
+                console.log("state:", result.data.state);
 
             const member: Member = result.data.data;
             localStorage.setItem("member_data", JSON.stringify(member));
@@ -37,9 +37,9 @@ class MemberApiService {
                 {
                     withCredentials: true
                 });
-            console.log("state:", result.data.state);
-            assert.ok(result?.data, Definer.general_err1);
-            assert.ok(result?.data?.state != "fail", result?.data?.message);
+                assert.ok(result?.data, Definer.general_err1);
+                assert.ok(result?.data?.state != "fail", result?.data?.message)
+                console.log("state:", result.data.state);
 
             const member: Member = result.data.data;
             localStorage.setItem("member_data", JSON.stringify(member));
@@ -55,8 +55,9 @@ class MemberApiService {
           const result = await axios.get(this.path + "/logout", {
             withCredentials: true,
           });
-          assert.ok(result?.data, Definer.general_err1)
+          assert.ok(result?.data, Definer.general_err1);
           assert.ok(result?.data?.state != "fail", result?.data?.message)
+          console.log("state:", result.data.state);
           localStorage.removeItem("member_data")
             const logout_result = result.data.state;
           return logout_result == "success"
@@ -72,10 +73,10 @@ class MemberApiService {
             result = await axios.post(this.path + url, data, {
               withCredentials: true,
             });
-          assert.ok(result?.data, Definer.general_err1);
-          assert.ok(result?.data?.state != "fail", result?.data?.message);
+            assert.ok(result?.data, Definer.general_err1);
+            assert.ok(result?.data?.state != "fail", result?.data?.message)
+            console.log("state:", result.data.state);
     
-          console.log("state", result.data.data);
           const like_result: MemberLiken = result.data.data;
           return like_result;
         } catch (err: any) {
