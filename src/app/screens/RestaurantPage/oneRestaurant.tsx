@@ -271,7 +271,7 @@ export function OneRestaurant(props: any) {
                             Ichimlik
                         </Button>
                             <Button variant={"contained"} color="secondary"
-                            onClick={() => searchCollectionHandler('dessert')}>
+                            onClick={() => searchCollectionHandler('salad')}>
                             Salad
                         </Button>
                             <Button variant={"contained"} color="secondary"
