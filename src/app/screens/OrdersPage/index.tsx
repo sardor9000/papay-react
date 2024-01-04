@@ -20,6 +20,7 @@ import {
   setFinishedOrders
 } from "../../screens/OrdersPage/slice";
 import OrderApiService from "../../apiServices/orderApiService";
+import { Member } from "../../../types/user";
 
 
 // REDUX SLICE
@@ -36,6 +37,7 @@ export function OrdersPage(props: any) {
   const [value, setValue] = useState("1");
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
+    const verifiedMemberData: Member | null = props.verifiedMemberData;
 
 
   useEffect(() => {
@@ -100,7 +102,7 @@ return (
             >
               <div className={"order_user_img"}>
                 <img
-                src={"/others/user.png"}   
+                src={verifiedMemberData?.mb_image} 
                 />
                 <div className={"order_user_icon_box"}>
                   <img
@@ -110,10 +112,10 @@ return (
                 </div>
               </div>
               <span className={"order_user_name"}>
-                Neo
+                {verifiedMemberData?.mb_nick}
               </span>
               <span className={"order_user_prof"}>
-              "Foydalanuvchi"
+              {verifiedMemberData?.mb_type ?? "Foydalanuvchi"}
               </span>
             </Box>
             <Box
@@ -126,7 +128,7 @@ return (
                 <LocationOnIcon />
               </div>
               <div className={"spec_address_txt"}>
-               "Seoul"
+              {verifiedMemberData?.mb_address ?? "Manzil kiritilmagan"}
               </div>
             </Box>
           </Box>
