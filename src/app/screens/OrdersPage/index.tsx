@@ -19,6 +19,7 @@ import {
   setProcessOrders,
   setFinishedOrders
 } from "../../screens/OrdersPage/slice";
+import OrderApiService from "../../apiServices/orderApiService";
 
 
 // REDUX SLICE
@@ -38,8 +39,21 @@ export function OrdersPage(props: any) {
 
 
   useEffect(() => {
-
-  },[])
+    const orderService = new OrderApiService();
+    orderService
+      .getMyOrders("paused")
+      .then((data) => setPausedOrders(data))
+      .catch((err) => console.log(err));
+      orderService
+      .getMyOrders("process")
+      .then((data) => setPausedOrders(data))
+      .catch((err) => console.log(err));
+      orderService
+      .getMyOrders("finished")
+      .then((data) => setPausedOrders(data))
+      .catch((err) => console.log(err));
+    
+  },[props.orderReBuild])
 
 
   /** HANDLERS **/
@@ -70,9 +84,9 @@ return (
               </Box>
             </Box>
             <Stack className={"order_main_content"}>
-            <PausedOrders />
-            <ProcessOrders />
-            <FinishedOrders />
+            <PausedOrders setOrderReBuild = {props.setOrderReBuild} />
+            <ProcessOrders setOrderReBuild = {props.setOrderReBuild} />
+            <FinishedOrders setOrderReBuild = {props.setOrderReBuild}/>
             
             </Stack>
           </TabContext>
