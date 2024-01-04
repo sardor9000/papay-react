@@ -5,7 +5,7 @@ export interface BoArticle {
     _id: string;
     art_subject: string;
     art_constent: string;
-    art_image: string;
+    art_image?: string | null;
     bo_id: string;
     art_status: number;
     art_likes: number;
