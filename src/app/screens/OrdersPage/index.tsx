@@ -26,7 +26,7 @@ import { Member } from "../../../types/user";
 // REDUX SLICE
 const actionDispatch = (dispach: Dispatch) => ({
   setPausedOrders: (data: Order[]) => dispach(setPausedOrders(data)),
-  setProcessOrders: (data: Order) => dispach(setProcessOrders(data)),
+  setProcessOrders: (data: Order[]) => dispach(setProcessOrders(data)),
   setFinishedOrders: (data: Order[]) => dispach(setFinishedOrders(data)),
 });
 
@@ -48,11 +48,11 @@ export function OrdersPage(props: any) {
       .catch((err) => console.log(err));
       orderService
       .getMyOrders("process")
-      .then((data) => setPausedOrders(data))
+      .then((data) => setProcessOrders(data))
       .catch((err) => console.log(err));
       orderService
       .getMyOrders("finished")
-      .then((data) => setPausedOrders(data))
+      .then((data) => setFinishedOrders(data))
       .catch((err) => console.log(err));
     
   },[props.orderReBuild])
