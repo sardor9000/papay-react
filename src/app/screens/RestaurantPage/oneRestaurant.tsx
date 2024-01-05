@@ -130,7 +130,7 @@ export function OneRestaurant(props: any) {
         setTargetProductSearchObj({ ...targetProductSearchObj });
     };
     const chosenDishHandler = (id: string) => {
-        history.push(`/restaurant/dish/${id}`);
+        history.push(`/restaurant/dish/${id}`); 
     }
 
   const targetLikeProduct = async (e: any) => {

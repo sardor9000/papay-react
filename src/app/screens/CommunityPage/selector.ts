@@ -1,8 +1,9 @@
-import { createSelector } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
 import { AppRootState } from "../../../types/screen";
 
 const selectCommunityPage = (state: AppRootState) => state.communityPage;
-export const retriveTargetBoArticles = createSelector(
-    selectCommunityPage,
-    (CommunityPage) => CommunityPage.targetBoArticles
-)
+
+export const retrieveTargetBoArticles = createSelector(
+  selectCommunityPage,
+  (CommunityPage) => CommunityPage.targetBoArticles
+);
