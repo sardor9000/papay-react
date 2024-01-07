@@ -4,20 +4,17 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import Checkbox from "@mui/material/Checkbox";
-import moment from "moment"
-import { Label } from "@mui/icons-material";
 import { BoArticle } from "../../../types/boArticle";
 import { serverApi } from "../../../lib/config";
 import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert";
 import assert  from "assert";
 import { Definer } from "../../../lib/Definer";
 import MemberApiService from "../../apiServices/memberApiService";
+import { Label } from "@mui/icons-material";
 
 
 
 export function TargetArticles(props: any) {
-
-    const { setArticlesReBuild } = props;
 
     // HNADLERS
     const targetLikeHandler = async (e: any) =>  {
@@ -92,7 +89,7 @@ export function TargetArticles(props: any) {
                                         >
                                             <div style={{marginRight: "50px"}} className="article_date">22-05-15 02:08</div>
                                             <Checkbox
-                                               {...Label}
+                                            //    {...Label}
                                                icon={<FavoriteBorder />}
                                                 checkedIcon={<Favorite style={{ color: "red" }} />}
                                                 id={article?._id}
