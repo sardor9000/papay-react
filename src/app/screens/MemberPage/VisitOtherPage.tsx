@@ -13,8 +13,63 @@ import { MemberFollowers } from "./memberFollowers";
 import { MemberFollowing } from "./ memberFollowing";
 import TViewer from "../../components/tuiEditor/TViewer";
 
+/** REDUX */
+import { useSelector,useDispatch } from "react-redux";
+import { createSelector } from "reselect";
+import { Dispatch } from '@reduxjs/toolkit';
+import {
+  setChosenMember,
+  setChosenMemberBoArticles,
+  setChosenSingleBoArticle
+} from './slice';
+import {
+  retriveChosenMember,
+  retriveChosenMemberBoArticles,
+  retriveChosenSingleBoArticle,
+} from './selector';
+import { Member } from "../../../types/user";
+import { BoArticle } from "../../../types/boArticle";
+
+/** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setChosenMember: (data: Member) => dispach(setChosenMember(data)),
+  setChosenMemberBoArticles: (data: BoArticle[]) => dispach(setChosenMemberBoArticles(data)),
+  setChosenSingleBoArticle: (data: BoArticle) => dispach(setChosenSingleBoArticle(data)),
+});
+
+/** REDUX SELECTOR */
+const chosenMemberRetriever = createSelector(
+  retriveChosenMember,
+  (chosenMember) => ({
+    chosenMember,
+  })
+);
+const chosenMemberBoArticlesRetriever = createSelector(
+  retriveChosenMemberBoArticles,
+  (chosenMemberBoArticles) => ({
+    chosenMemberBoArticles,
+  })
+);
+const chosenSingleBoArticleRetriever = createSelector(
+  retriveChosenMember,
+  (chosenSingleBoArticle) => ({
+    chosenSingleBoArticle,
+  })
+);
+
+
 export function VisitOtherPage() {
   /**INITIALIZATION */
+   const {
+    setChosenMember,
+    setChosenMemberBoArticles,
+    setChosenSingleBoArticle
+  } = actionDispatch(useDispatch());
+  
+const { chosenMember } = useSelector(chosenMemberRetriever);
+const { chosenMemberBoArticles } = useSelector(chosenMemberBoArticlesRetriever);
+const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriever);
+  
   const [value, setValue] = useState("3");
 
   /**HANDLERS */
